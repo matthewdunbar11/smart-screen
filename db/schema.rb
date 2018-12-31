@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_30_210613) do
+ActiveRecord::Schema.define(version: 2018_12_31_122127) do
+
+  create_table "displays", force: :cascade do |t|
+    t.string "name"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_displays_on_user_id"
+  end
+
+  create_table "predefined_layout_screens", force: :cascade do |t|
+    t.integer "display_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["display_id"], name: "index_predefined_layout_screens_on_display_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
