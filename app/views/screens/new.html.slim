@@ -1,5 +1,10 @@
-h1 Layout
+h1.title New Screen
 = form_with model: [@display, @screen] do |f|
-    = f.label :displayable_type, 'Layout'
-    = f.select :displayable_type, options_for_select(layout_options), include_blank: true
-    = f.submit 'Next'
+  .field
+    = f.label :displayable_type, 'Layout', class: 'label'
+    .control
+      .select
+        = f.select :displayable_type, options_for_select(layout_options), include_blank: true
+  .field
+    .control
+      = f.submit 'Next', class: 'button is-primary'

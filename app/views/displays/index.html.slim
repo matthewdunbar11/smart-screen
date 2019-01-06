@@ -1,5 +1,11 @@
-h1 Displays
-ul
-  - @displays.each do |display|
-    li= link_to(display.name, display_path(display))
-= link_to 'Add New Display', new_display_path
+h1.title Displays
+table.table
+  thead
+    th Name
+  tbody
+    - @displays.each do |display|
+      tr
+        td= link_to(display.name, display_path(display))
+  tfoot
+    tr
+      td= link_to 'Add New Display', new_display_path

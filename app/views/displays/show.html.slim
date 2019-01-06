@@ -1,8 +1,7 @@
-h1= @display.name
-p
-  = link_to 'Edit', edit_display_path(@display)
-p
-  = link_to 'Delete', display_path(@display), method: :delete
+h1.title= @display.name
+div.tags
+  span.tag= link_to 'Edit', edit_display_path(@display)
+  span.tag.is-danger= link_to 'Delete', display_path(@display), method: :delete
 p
   = link_to 'Add Screen', new_display_screen_path(@display)
 ul

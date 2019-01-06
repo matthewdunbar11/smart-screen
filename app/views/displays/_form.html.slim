@@ -1,5 +1,9 @@
 = form_with model: @display do |f|
-  = f.label :name
-  = f.text_field :name
 
-  = f.submit
+  = f.label :name, class: 'label'
+  .field
+    .control
+      = f.text_field :name, class: 'input'
+  .field
+    .control
+      = f.submit class: 'button is-primary'
