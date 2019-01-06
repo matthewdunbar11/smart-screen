@@ -1,4 +1,6 @@
 h1.title= @display.name
+div Showing #{@display.displayable_type}
 div.tags
+  span.tag= link_to 'Present', present_display_path(@display)
   span.tag= link_to 'Edit', edit_display_path(@display)
   span.tag.is-danger= link_to 'Delete', display_path(@display), method: :delete

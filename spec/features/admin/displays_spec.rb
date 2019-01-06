@@ -17,9 +17,23 @@ RSpec.feature 'displays administration' do
 
       fill_in 'Name', with: display_attributes[:name]
 
+      select 'Clock', from: 'Content'
+
       click_on 'Create Display'
 
       expect(page).to have_content(display_attributes[:name])
+      expect(page).to have_content('Clock')
+    end
+  end
+
+  describe 'present' do
+    let(:display) { FactoryBot.create(:display, user: user, displayable: FactoryBot.build(:clock)) }
+
+    it 'presents the selected display' do
+      current_time = Time.current
+      allow(Time).to receive(:current).and_return(current_time)
+      visit present_display_path(display)
+      expect(page).to have_content(current_time.in_time_zone('EST').strftime('%r'))
     end
   end
 

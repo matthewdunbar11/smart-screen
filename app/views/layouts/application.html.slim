@@ -1,47 +1,35 @@
-doctype html
-html
-  head
-    title
-      | SmartScreen
-    = csrf_meta_tags
-    = csp_meta_tag
-    meta[name="viewport" content="width=device-width, initial-scale=1"]
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = stylesheet_link_tag    'https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-  body
+= render 'layouts/base' do
+  nav.navbar.is-black
+    .navbar-brand
+      a.navbar-item href='/'
+        | Smart Screen
+    .navbar-menu
+      .navbar-end
+        - if current_user
+          .navbar-item.has-dropdown.is-hoverable
+            a.navbar-link
+                | Howdy, 
+                = current_user.email
+                | !
+            .navbar-dropdown
+              a.navbar-item
+                | Account
+              hr.navbar-divider
+              = link_to 'Log Out', destroy_user_session_path, method: :delete, class: 'navbar-item'
+        - else        
+          .navbar-item
+            .buttons
+              = link_to new_user_registration_path, class: 'button is-primary'
+                strong Sign Up
+              = link_to 'Log In', new_user_session_path, class: 'button is-light'
 
-    nav.navbar.is-black
-      .navbar-brand
-        a.navbar-item href='/'
-          | Smart Screen
-      .navbar-menu
-        .navbar-end
-          - if current_user
-            .navbar-item.has-dropdown.is-hoverable
-              a.navbar-link
-                  | Howdy, 
-                  = current_user.email
-                  | !
-              .navbar-dropdown
-                a.navbar-item
-                  | Account
-                hr.navbar-divider
-                = link_to 'Log Out', destroy_user_session_path, method: :delete, class: 'navbar-item'
-          - else        
-            .navbar-item
-              .buttons
-                = link_to new_user_registration_path, class: 'button is-primary'
-                  strong Sign Up
-                = link_to 'Log In', new_user_session_path, class: 'button is-light'
-
-    section.section
-      .container
-        - if notice
-          .notification.is-info
-            = notice
-        - if alert
-          .notification.is-danger
-            = alert
-      
-        = yield
+  section.section
+    .container
+      - if notice
+        .notification.is-info
+          = notice
+      - if alert
+        .notification.is-danger
+          = alert
+    
+      = yield

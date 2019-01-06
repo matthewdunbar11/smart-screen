@@ -1,9 +1,12 @@
 = form_with model: @display do |f|
-
-  = f.label :name, class: 'label'
   .field
+    = f.label :name, class: 'label'
     .control
       = f.text_field :name, class: 'input'
+  .field
+    = f.label :content, class: 'label'
+    .select
+      = f.select :content, Display::DISPLAYABLE_TYPES.map { |type| [type, type] }, include_blank: true
   .field
     .control
       = f.submit class: 'button is-primary'

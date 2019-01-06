@@ -1,7 +1,10 @@
 class DisplaysController < ApplicationController
   load_and_authorize_resource
 
+  layout 'fullscreen', only: :present
+
   def create
+    @display.displayable = params[:display][:content].constantize.new
     @display.save!
 
     redirect_to @display

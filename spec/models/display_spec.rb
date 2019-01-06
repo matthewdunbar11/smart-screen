@@ -14,6 +14,6 @@ RSpec.describe Display, type: :model do
   end
 
   it 'has displayable types' do
-    expect(Display::DISPLAYABLE_TYPES).to eq([])
+    expect(Display::DISPLAYABLE_TYPES).to eq([Clock])
   end
 end
