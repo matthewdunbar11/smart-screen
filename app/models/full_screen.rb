@@ -1,2 +1,0 @@
-class FullScreen < ApplicationRecord
-end

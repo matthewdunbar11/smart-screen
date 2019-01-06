@@ -10,34 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_04_023535) do
+ActiveRecord::Schema.define(version: 2018_12_30_223947) do
 
   create_table "displays", force: :cascade do |t|
     t.string "name"
     t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_displays_on_user_id"
-  end
-
-  create_table "full_screens", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "predefined_layout_screens", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "screens", force: :cascade do |t|
-    t.integer "display_id"
     t.string "displayable_type"
     t.integer "displayable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["display_id"], name: "index_screens_on_display_id"
-    t.index ["displayable_type", "displayable_id"], name: "index_screens_on_displayable_type_and_displayable_id"
+    t.index ["displayable_type", "displayable_id"], name: "index_displays_on_displayable_type_and_displayable_id"
+    t.index ["user_id"], name: "index_displays_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,6 +1,6 @@
 class Display < ApplicationRecord
-  DISPLAYABLE_TYPES = [PredefinedLayoutScreen, FullScreen]
+  DISPLAYABLE_TYPES = []
 
   belongs_to :user
-  has_many :screens
+  belongs_to :displayable, polymorphic: true, optional: true
 end

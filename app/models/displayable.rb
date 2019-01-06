@@ -1,3 +1,0 @@
-class Displayable < ApplicationRecord
-
-end

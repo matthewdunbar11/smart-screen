@@ -9,16 +9,11 @@ RSpec.describe Display, type: :model do
     expect(display).not_to be_valid
   end
 
-  it 'has many screens' do
-    predefined_layout_screen = FactoryBot.build(:predefined_layout_screen)
-    display.screens.create!(displayable: predefined_layout_screen)
-    expect(display.screens.first.displayable).to eq(predefined_layout_screen)
+  it 'has one displayable' do
+    expect(display.displayable).to be_nil
   end
 
   it 'has displayable types' do
-    expect(Display::DISPLAYABLE_TYPES).to eq([
-      PredefinedLayoutScreen,
-      FullScreen
-    ])
+    expect(Display::DISPLAYABLE_TYPES).to eq([])
   end
 end

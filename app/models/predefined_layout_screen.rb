@@ -1,2 +1,0 @@
-class PredefinedLayoutScreen < ApplicationRecord
-end

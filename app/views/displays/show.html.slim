@@ -2,11 +2,3 @@ h1.title= @display.name
 div.tags
   span.tag= link_to 'Edit', edit_display_path(@display)
   span.tag.is-danger= link_to 'Delete', display_path(@display), method: :delete
-p
-  = link_to 'Add Screen', new_display_screen_path(@display)
-ul
-  - @display.screens.each do |screen|
-    li data-screen-id=screen.id
-      p 
-        = screen.displayable.class.to_s.titleize
-        =< link_to 'Delete', display_screen_path(@display, screen), method: :delete
