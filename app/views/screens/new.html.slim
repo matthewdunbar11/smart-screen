@@ -1,0 +1,5 @@
+h1 Layout
+= form_with model: [@display, @screen] do |f|
+    = f.label :displayable_type, 'Layout'
+    = f.select :displayable_type, options_for_select(layout_options), include_blank: true
+    = f.submit 'Next'

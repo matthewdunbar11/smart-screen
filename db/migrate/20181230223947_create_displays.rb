@@ -1,4 +1,4 @@
-class CreateDisplays < ActiveRecord::Migration[6.0]
+class CreateDisplays < ActiveRecord::Migration[5.2]
   def change
     create_table :displays do |t|
       t.string :name

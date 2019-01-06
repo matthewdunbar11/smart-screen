@@ -1,0 +1,5 @@
+h1 Displays
+ul
+  - @displays.each do |display|
+    li= link_to(display.name, display_path(display))
+= link_to 'Add New Display', new_display_path

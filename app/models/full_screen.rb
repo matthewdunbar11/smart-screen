@@ -1,0 +1,2 @@
+class FullScreen < ApplicationRecord
+end
