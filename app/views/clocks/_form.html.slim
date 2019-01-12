@@ -1,0 +1,9 @@
+h1.title Clock Options
+= form_for @clock do |f|
+  .field
+    = f.label :time_zone, 'Time Zone', class: 'label'
+    .select
+      = f.select :time_zone, @time_zones
+  .field
+    .control
+      = f.submit class: 'button is-primary'

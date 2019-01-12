@@ -1,2 +1,11 @@
-.columns.is-vcentered.is-full-height
-  h1.title.column.has-text-centered= Time.current.in_time_zone('EST').strftime('%r')
+.card
+  header.card-header
+    p.card-header-title Clock
+  .card-content
+    .content
+      table.table.is-striped
+        tr
+          th Time Zone
+          td= @display.displayable.time_zone
+  footer.card-footer
+    = link_to 'Edit', [:edit, @display.displayable], class: 'card-footer-item'

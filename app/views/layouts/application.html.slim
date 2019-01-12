@@ -25,6 +25,12 @@
 
   section.section
     .container
+      nav.breadcrumb
+        ul
+          - breadcrumb_trail do |crumb|
+            li class=(crumb.current? ? 'is-active': '')
+              = link_to crumb.name, crumb.path
+
       - if notice
         .notification.is-info
           = notice
@@ -32,4 +38,6 @@
         .notification.is-danger
           = alert
     
-      = yield
+      .columns
+        .column.is-half.is-offset-one-quarter    
+          = yield

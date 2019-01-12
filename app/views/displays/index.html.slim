@@ -1,11 +1,21 @@
 h1.title Displays
 table.table
   thead
-    th Name
+    tr
+      th= link_to new_display_path do
+        i.fas.fa-plus-square
+        |  Add New Display
+      th
+      th        
+    tr
+      th Name
+      th Edit
+      th Delete
   tbody
     - @displays.each do |display|
       tr
         td= link_to(display.name, display_path(display))
-  tfoot
-    tr
-      td= link_to 'Add New Display', new_display_path
+        td= link_to edit_display_path(display)
+          i.fas.fa-pencil-alt
+        td= link_to display_path(display), method: :delete
+          i.fas.fa-trash

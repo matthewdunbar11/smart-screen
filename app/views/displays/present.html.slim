@@ -1,1 +1,2 @@
-= render @display.displayable
+- if @display.displayable
+  = render "#{ActiveModel::Naming.plural(@display.displayable)}/present"

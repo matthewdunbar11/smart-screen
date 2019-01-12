@@ -7,6 +7,8 @@ Rails.application.routes.draw do
       get :present
     end
   end
-  
+
+  resources :clocks
+
   root to: 'home#index'
 end
