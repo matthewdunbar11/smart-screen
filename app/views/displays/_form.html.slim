@@ -6,7 +6,7 @@
   .field
     = f.label :content, class: 'label'
     .select
-      = f.select :content, Display::DISPLAYABLE_TYPES.map { |type| [type, type] }, include_blank: true, selected: @display.displayable_type.try(:titleize)
-  .field
-    .control
-      = f.submit class: 'button is-primary'
+      = f.select :content, Display::DISPLAYABLE_TYPES.map { |type| [type, type] }, { include_blank: true, selected: @display.displayable_type.try(:titleize) }, 'data-action': 'auto-submit#submit'
+
+- if @display.displayable
+  = render "#{@display.displayable.class.to_s.pluralize.underscore}/form", locals: { displayable: @display.displayable }

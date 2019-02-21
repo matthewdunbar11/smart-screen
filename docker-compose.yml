@@ -6,3 +6,8 @@ services:
       - ./:/src
     ports:
       - 3000:3000
+      - 9000:9000
+  chrome:
+    image: selenium/standalone-chrome-debug
+    ports:
+      - 5900:5900

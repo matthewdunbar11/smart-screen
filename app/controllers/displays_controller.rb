@@ -13,10 +13,9 @@ class DisplaysController < ApplicationController
   end
 
   def create
-    @display.displayable = params[:display][:content].constantize.new
     @display.save!
 
-    redirect_to @display
+    redirect_to [:edit, @display]
   end
 
   def edit
@@ -25,10 +24,15 @@ class DisplaysController < ApplicationController
   end
 
   def update
-    @display.displayable = params[:display][:content].constantize.new
+    if params[:display][:content].present?
+      @display.displayable = params[:display][:content].constantize.new
+    else
+      @display.displayable = nil
+    end
+
     @display.update!(display_params)
 
-    redirect_to @display
+    redirect_to [:edit, @display]
   end
 
   def destroy

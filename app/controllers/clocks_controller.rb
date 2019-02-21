@@ -5,14 +5,12 @@ class ClocksController < ApplicationController
     breadcrumb 'Displays', :displays_path, except: :present
     breadcrumb @clock.display.name, display_path(@clock.display)
     breadcrumb @clock.class.label, edit_clock_path(@clock)
-
-    @time_zones = ActiveSupport::TimeZone.all.sort_by(&:utc_offset).map { |tz| [tz.name, tz.name] }
   end
 
   def update
     @clock.update!(clock_params)
 
-    redirect_to @clock.display
+    redirect_to [:edit, @clock.display]
   end
 
   private

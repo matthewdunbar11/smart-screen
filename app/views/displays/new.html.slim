@@ -1,3 +1,13 @@
 h1.title Create Display
 
-= render 'form'
+= form_with model: @display do |f|
+  .field
+    = f.label :name, class: 'label'
+    .control
+      = f.text_field :name, class: 'input'
+  .field
+    .control
+      = f.submit class: 'button is-primary'
+
+- if @display.displayable
+  = render "#{@display.displayable.class.to_s.pluralize.underscore}/form", locals: { displayable: @display.displayable }

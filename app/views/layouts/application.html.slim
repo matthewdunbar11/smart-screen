@@ -1,8 +1,10 @@
 = render 'layouts/base' do
   nav.navbar.is-black
     .navbar-brand
-      a.navbar-item href='/'
-        | Smart Screen
+      - back_crumb = breadcrumb_trail.to_a[-2]
+      - if back_crumb
+        = link_to back_crumb.path, class: 'navbar-item', title: back_crumb.name
+          i.fas.fa-chevron-left
     .navbar-menu
       .navbar-end
         - if current_user
@@ -23,13 +25,11 @@
                 strong Sign Up
               = link_to 'Log In', new_user_session_path, class: 'button is-light'
 
-  section.section
+  section.section data-controller='auto-submit'
     .container
-      nav.breadcrumb
-        ul
-          - breadcrumb_trail do |crumb|
-            li class=(crumb.current? ? 'is-active': '')
-              = link_to crumb.name, crumb.path
+      / nav.breadcrumb
+      /   ul
+
 
       - if notice
         .notification.is-info

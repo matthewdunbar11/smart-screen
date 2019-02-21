@@ -14,15 +14,11 @@ RSpec.feature 'displays administration' do
       click_on 'Add New Display'
 
       display_attributes = FactoryBot.attributes_for(:display)
-
       fill_in 'Name', with: display_attributes[:name]
-
-      select 'Clock', from: 'Content'
-
       click_on 'Create Display'
 
       expect(page).to have_content(display_attributes[:name])
-      expect(page).to have_content('Clock')
+      expect(page).to have_select 'Content', with_options: ['Clock']
     end
   end
 
@@ -37,28 +33,27 @@ RSpec.feature 'displays administration' do
     end
   end
 
-  describe 'edit' do
-    let(:clock) { FactoryBot.build(:clock) }
-    let(:display) { FactoryBot.create(:display, user: user, displayable: clock) }
+  describe 'edit', js: true do
+    let!(:display) { FactoryBot.create(:display, user: user, displayable: nil) }
 
     it 'allows editing an existing display' do
-      visit display_path(display)
-      click_on 'Display Options'
-      expect(page).to have_select('Content', selected: clock.class.to_s.capitalize)
-      fill_in 'Name', with: 'New Name'
-      click_on 'Update Display'
-
-      expect(page).to have_content('New Name')
-    end
-
-    it 'links to the attached displayables form' do
-      visit display_path(display)
-      click_on 'Edit'
+      visit displays_path
+      DisplaysPage.display_row(display).find('.edit').click
+      select 'Clock', from: 'Content'
+      expect(page).to have_select 'Time Zone'
+      
       select 'Eastern Time (US & Canada)', from: 'Time Zone'
-      click_on 'Update Clock'
-      expect(page).to have_content('Time Zone')
-      expect(page).to have_content('Eastern Time (US & Canada)')
+      expect(page).to have_select 'Time Zone', selected: 'Eastern Time (US & Canada)'
     end
+
+    # it 'links to the attached displayables form' do
+    #   visit display_path(display)
+    #   click_on 'Edit'
+    #   select 'Eastern Time (US & Canada)', from: 'Time Zone'
+    #   click_on 'Update Clock'
+    #   expect(page).to have_content('Time Zone')
+    #   expect(page).to have_content('Eastern Time (US & Canada)')
+    # end
   end
 
   describe 'delete' do
